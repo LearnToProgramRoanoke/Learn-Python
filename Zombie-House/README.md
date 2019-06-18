@@ -44,7 +44,7 @@ def showStatus():
   if "monster" in rooms[currentRoom]:
     print('There is a ' + rooms[currentRoom]['monster'] + ' in the room!')
   if "poison" in rooms[currentRoom]:
-    print('This is some ' + rooms[currentRoom]['poison'] + ' in the room!')
+    print('There is some ' + rooms[currentRoom]['poison'] + ' in the room!')
   print("---------------------------")
   ```
 Browse through the code as an example and try making your own text-based adventure game! 

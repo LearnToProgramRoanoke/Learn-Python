@@ -33,7 +33,7 @@ def showStatus():
   if "monster" in rooms[currentRoom]:
     print('There is a ' + rooms[currentRoom]['monster'] + ' in the room!')
   if "poison" in rooms[currentRoom]:
-    print('This is some ' + rooms[currentRoom]['poison'] + ' in the room!')
+    print('There is some ' + rooms[currentRoom]['poison'] + ' in the room!')
   print("---------------------------")
 
 # An inventory, which is initially empty
