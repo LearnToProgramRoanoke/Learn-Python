@@ -29,4 +29,22 @@ rooms = {
             }
         }
 ```
+Going beyond the original project, this example introduces two new types of objects inside a room: *monster* and *poison* - each being displayed inside the room with the following code:
 
+```python
+def showStatus():
+  # print the player's current status
+  print('---------------------------')
+  print('You are in the ' + currentRoom)
+  # print the current inventory
+  print('Inventory : ' + str(inventory))
+  # print an item, monster or poison if there is one
+  if "item" in rooms[currentRoom]:
+    print('You see a ' + rooms[currentRoom]['item'])
+  if "monster" in rooms[currentRoom]:
+    print('There is a ' + rooms[currentRoom]['monster'] + ' in the room!')
+  if "poison" in rooms[currentRoom]:
+    print('This is some ' + rooms[currentRoom]['poison'] + ' in the room!')
+  print("---------------------------")
+  ```
+Browse through the code as an example and try making your own text-based adventure game! 
