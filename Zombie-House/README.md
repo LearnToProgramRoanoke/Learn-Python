@@ -1,6 +1,6 @@
 # Learn Python
 
-## Zombie House Game
+### Zombie House Game
 
 Remix from [original RPG project](https://projects.raspberrypi.org/en/projects/rpg) published by Raspberry Pi Foundation.
 
