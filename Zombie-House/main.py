@@ -3,6 +3,8 @@
 # Remix from original project published by Raspberry Pi Foundation 
 # https://projects.raspberrypi.org/en/projects/rpg
 
+# NOTE: This code is in the 'working' branch
+
 def showInstructions():
   # print a main menu and the commands
   print('''
