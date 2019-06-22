@@ -1,7 +1,11 @@
 #!/bin/python3
 
-# Remix from original project published by Raspberry Pi Foundation 
-# https://projects.raspberrypi.org/en/projects/rpg
+'''
+Remix from original project published by Raspberry Pi Foundation 
+https://projects.raspberrypi.org/en/projects/rpg
+Integrated code from https://github.com/xAptive
+Converted code to use f-strings (available in Python 3.6 and newer)
+'''
 
 # NOTE: This code is in the 'working' branch
 
@@ -27,16 +31,19 @@ Commands:
 def showStatus():
   # print the player's current status
   print('---------------------------')
-  print('You are in the ' + currentRoom)
+  print(f"You are in the {currentRoom}")
   # print the current inventory
-  print('Inventory : ' + str(inventory))
+  print(f"Inventory : {str(inventory)}")
+  # print the available directions
+  for direction in rooms[currentRoom]['directions']:
+    print(f"The {rooms[currentRoom]['directions'][direction]} is {direction}")
   # print an item, monster or poison if there is one
   if "item" in rooms[currentRoom]:
-    print('You see a ' + rooms[currentRoom]['item'])
+    print(f"You see a {rooms[currentRoom]['item']}")
   if "monster" in rooms[currentRoom]:
-    print('There is a ' + rooms[currentRoom]['monster'] + ' in the room!')
+    print(f"There is a {rooms[currentRoom]['monster']} in the room!")
   if "poison" in rooms[currentRoom]:
-    print('There is some ' + rooms[currentRoom]['poison'] + ' in the room!')
+    print(f"There is some {rooms[currentRoom]['poison']} in the room!")
   print("---------------------------")
 
 # An inventory, which is initially empty
