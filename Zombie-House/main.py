@@ -7,7 +7,7 @@ Integrated code from https://github.com/xAptive
 Converted code to use f-strings (available in Python 3.6 and newer)
 '''
 
-# NOTE: This code is in the 'working' branch
+# NOTE: This code is in the 'master' branch
 
 def showInstructions():
   # print a main menu and the commands
