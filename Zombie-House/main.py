@@ -138,7 +138,9 @@ rooms = {
             },
             
             'Garden' : {
-                'south' : 'Atrium' 
+              'directions' : {
+                'south' : 'Atrium'
+              }   
             }
 
          }
