@@ -4,6 +4,7 @@
 Remix from original project published by Raspberry Pi Foundation 
 https://projects.raspberrypi.org/en/projects/rpg
 Integrated code from https://github.com/xAptive
+MIT License - Copyright (c) 2019 Dave Tucker
 Converted code to use f-strings (available in Python 3.6 and newer)
 '''
 
@@ -30,7 +31,7 @@ Commands:
 
 def showStatus():
   # print the player's current status
-  print('---------------------------')
+  print("---------------------------")
   print(f"You are in the {currentRoom}")
   # print the current inventory
   print(f"Inventory : {str(inventory)}")
