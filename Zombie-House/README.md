@@ -9,7 +9,11 @@ Remix from [original RPG project](https://projects.raspberrypi.org/en/projects/r
 * Functions
 * Lists
 * Dictionaries
-* Game Loop
+* if / else
+* for loop
+* A "game loop" (using "while True:")
+* Formatted String Literals (f-strings)
+* try / except
 
 **Objectives:**
 
@@ -29,6 +33,31 @@ rooms = {
             }
         }
 ```
+In order to improve the navigation and display the available directions the player can travel, a nested dictionary was introduced so that directions and items are separated (this also fixed a bug in the game).
+
+```python
+rooms = {
+
+            'Hall' : {
+              'directions' : {
+                  'south' : 'Kitchen',
+                  'east' : 'Dining Room',
+                  'north' : 'Atrium',
+                  'west' : 'Library'
+              },
+              'item' : 'key'
+            },
+
+            'Kitchen' : {
+              'directions' : {
+                  'north' : 'Hall',
+                  'east' : 'Pantry'
+              },
+              'monster' : 'Zombie',
+              'item' : 'flower'
+            },
+```
+
 Going beyond the original project, this example introduces two new types of objects inside a room: *monster* and *poison* - each being displayed inside the room with the following code:
 
 ```python

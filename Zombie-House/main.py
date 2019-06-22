@@ -49,8 +49,15 @@ def showStatus():
 # An inventory, which is initially empty
 inventory = []
 
-# A dictionary linking a room to other rooms
-# Rooms can contain a monster or poison
+'''
+A dictionary is used to link a room to other rooms and
+define what is contained inside the room.
+The directions a player can move are in a nested dictionary.
+Rooms can contain an item, monster or poison
+An item is something the player can use (protect/defend)
+whereas a monster or poison are non-playable (NPC), but can 
+do damage to a player
+'''
 rooms = {
 
             'Hall' : {
