@@ -9,7 +9,7 @@ Remix from [original RPG project](https://projects.raspberrypi.org/en/projects/r
 
 * Functions
 * Lists
-* Dictionaries
+* [Dictionaries](dictionaries.md)
 * if / else
 * for loop
 * A "game loop" (using "while True:")
@@ -24,12 +24,12 @@ Create a text-based game where a player navigates through a set of rooms. Progra
 # a dictionary linking a room to other rooms
 rooms = {
             'Hall' : {
-                'south' : 'Kitchen'
+                'south' : 'Kitchen',
                 'item' : 'key'
             },
 
             'Kitchen' : {
-                'north' : 'Hall'
+                'north' : 'Hall',
                 'item' : 'monster'
             }
         }
