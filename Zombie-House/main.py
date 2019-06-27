@@ -22,9 +22,9 @@ Defend yourself against the Zombies with a sword
 Protect yourself against the Poisons with a potion
 
 Commands:
-  go [direction] (Options -> north, south, east or west)
-  get [item] (Options -> key, sword or potion)
-  exit (Exit the game)
+  go [direction]
+  get [item]
+  exit
   
 ''')
 
@@ -32,6 +32,8 @@ def showStatus():
   # print the player's current status
   print('---------------------------')
   print(f"You are in the {currentRoom}")
+  # print your health score
+  print(f"Health : {health}")
   # print the current inventory
   print(f"Inventory : {str(inventory)}")
   # print the available directions
@@ -46,8 +48,14 @@ def showStatus():
     print(f"There is some {rooms[currentRoom]['poison']} in the room!")
   print("---------------------------")
 
-# An inventory, which is initially empty
+# Create inventory, which is initially empty
 inventory = []
+
+# Initial health points
+health = 3
+
+# start the player in the Hall
+currentRoom = 'Hall'
 
 '''
 A dictionary is used to link a room to other rooms and
@@ -145,9 +153,6 @@ rooms = {
 
          }
 
-# start the player in the Hall
-currentRoom = 'Hall'
-
 showInstructions()
 
 # loop forever
@@ -195,19 +200,31 @@ while True:
     if move[0] == 'exit':
       break
       
-    # Player loses game if they enter room with Zombie without a Sword
+    # Player loses health if they enter room with Zombie without a Sword
     if 'monster' in rooms[currentRoom] and 'Zombie' in rooms[currentRoom]['monster'] and 'sword' in inventory:
-      print('You have defended yourself from the Zombie attack! ... Continue On')
+      print('You have defended yourself from the Zombie attack! ... Fantastic!')
     elif 'monster' in rooms[currentRoom] and 'Zombie' in rooms[currentRoom]['monster']:
-      print('A Zombie has eaten your brainz. You need to defend yourself ... GAME OVER!!!')
-      break
+      # If monster is in room, subtract a health point
+      health -= 1
+      if health >= 1:
+        print("The Zombie took a bite out of you! You need to defend yourself with a sword!")
+      else:
+        # Game ends once health reaches zero
+        print('A Zombie has eaten your brainz ... GAME OVER!!!')
+        break
   
-    # Player loses game if they enter room with poison without a potion
+    # Player loses health if they enter room with poison without a potion
     if 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison'] and 'potion' in inventory:
-      print('The potion has protected you from the Poison! ... Continue On')
+      print('The potion has protected you from the Poison! ... Good Deal!')
     elif 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison']:
-      print('The Poison Hemlock has killed you. A potion will protect you ... GAME OVER!!!')
-      break
+      # If poison is in room, subtract a health point
+      health -= 1
+      if health >= 1:
+        print("You are weakened by the Poison! A potion will protect you!")
+      else:
+        # Game ends once health reaches zero
+        print('The Poison has killed you ... GAME OVER!!!')
+        break
   
     # Player wins game if they get to the Garden with the key and magic potion
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
