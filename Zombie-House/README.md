@@ -1,5 +1,5 @@
 # Learn Python
-[Home](../README.md) | Zombie House
+[Home](../README.md) | Zombie House | [Dictionaries](dictionaries.md) | [Lists](lists.md) | [Functions](functions.md)
 
 ### Zombie House Game
 
@@ -7,8 +7,8 @@ Remix from [original RPG project](https://projects.raspberrypi.org/en/projects/r
 
 **Concepts:**
 
-* Functions
-* Lists
+* [Functions](functions.md)
+* [Lists](lists.md)
 * [Dictionaries](dictionaries.md)
 * if / else
 * for loop

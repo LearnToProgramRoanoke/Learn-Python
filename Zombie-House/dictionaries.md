@@ -1,5 +1,5 @@
 # Learn Python
-[Home](../README.md) | [Zombie House](README.md) | Dictionaries
+[Home](../README.md) | [Zombie House](README.md) | Dictionaries | [Lists](lists.md) | [Functions](functions.md)
 
 ### Zombie House Game
 
