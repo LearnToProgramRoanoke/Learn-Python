@@ -16,7 +16,7 @@ Try this code in the Python REPL:
 >>> x(3)
 >>> 'four'
 ```
-Lists are mutable, so you can add and remove items in a list in the program. The game uses this for tracking the player's inventory. With the "get [item]" command, if the item is in the room, it is added to the inventory list.
+Lists are mutable, so you can add and remove items in a list with code. The game uses this for tracking the player's inventory. With the "get [item]" command, if the item is in the room, it is added to the inventory list.
 
 ```python
 # if they type 'get' first
@@ -41,7 +41,7 @@ Look closely at the code that deleted the item from the dictionary.  What proble
 
 **Challenge**
 
-Consider how the program could be modified to not only get and item, but also drop an item in the player's inventory in another room.
+Consider how the program could be modified to not only get an item, but also drop an item from the player inventory in another room.
 
 * Before dropping, check that the item is in the inventory list
 * Once dropped, add the item to the dictionary for the current room

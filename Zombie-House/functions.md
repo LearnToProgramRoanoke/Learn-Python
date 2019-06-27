@@ -18,7 +18,7 @@ def myFirstFunction():
 myFirstFunction()
 ```
 
-The first fuction in the Zombie House game simply prints the rules of the game as a block of text:
+The first function in the Zombie House game simply prints the rules of the game as a block of text:
 
 ```python
 def showInstructions():
@@ -65,6 +65,6 @@ def showStatus():
 
 **Challenge**
 
-Think about the game could be modified to display the game rules again when the player types "help" at the command prompt. Could there be any other functions introduced to improve the game play?
+Think about how the code could be modified to display the game rules again when the player types "help" at the command prompt. Could there be any other functions introduced to improve the game play?
 
 Keep learning and enjoying your new Python programming skills!
