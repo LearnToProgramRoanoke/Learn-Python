@@ -69,6 +69,50 @@ Now, to display the available directions and other items in the room, the "showS
     print(f"There is some {rooms[currentRoom]['poison']} in the room!")
 ```
 
-This same technique could be taken even further to add new items to a room, such as monsters, poisons and other non-playable characters. The downside is, at some point, the entire dictionary becomes hard to manage and maintain.  This leads to the next concept of Object Oriented Programming (OOP).  The objects in the game can be inside a Class and instances created in the program.
+This same technique could be taken even further to add new items to a room, such as monsters, poisons and other non-playable characters. The downside is, at some point, the entire dictionary becomes hard to manage and maintain.  
 
-More to follow ...
+> This leads to the next concept of Object Oriented Programming (OOP).  
+> The objects in the game can be inside a Class and instances created in the program.
+
+*Adding the finising touches ...*
+
+To round out the game, more rooms were added with an upstairs and downstairs. To achieve that, two additional directions were added: up and down.  Descriptions of each room were also added to enhance the game experience.
+
+In this game, the stairs are in the Atrium:
+
+```python
+'Atrium' : {
+              'directions' : {
+                  'south' : 'Hall',
+                  'west' : 'Parlor',
+                  'east' : 'Guest Bedroom',
+                  'north' : 'Garden',
+                  'up' : 'Upstairs Hall'
+              },
+              'description' : 'An atrium with a high, vaulted ceiling. \nThere are stairs leading up.'
+            },
+```
+
+and the Upstairs Hall:
+
+```python
+'Upstairs Hall' : {
+              'directions' : {
+                'north' : 'Master Bedroom',
+                'down' : 'Atrium'
+              },
+              'description' : 'A narrow upstairs hallway leading to the Master Bedroom. \nThere are stairs leading down.'
+            },
+```
+
+The description adds some hints about where to go. On a side note, the backslach n (\n) is for "newline" which breaks up the description and makes it a bit easier to read.
+
+Getting the description to display in the showStatus() function is accomplished with a couple lines of code. The *if* statement first checks to see that the description has been provided.
+
+```python
+# print the room description, if given
+  if "description" in rooms[currentRoom]:
+    print(f"{rooms[currentRoom]['description']}")
+```
+
+That wraps things up for this version of the game. Enjoy some coding!
