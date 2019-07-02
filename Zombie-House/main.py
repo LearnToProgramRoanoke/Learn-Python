@@ -23,9 +23,9 @@ Defend yourself against the Zombies with a sword
 Protect yourself against the Poisons with a potion
 
 Commands:
-  go [direction] (Options -> north, south, east or west)
-  get [item] (Options -> key, sword or potion)
-  exit (Exit the game)
+  go [direction]
+  get [item]
+  exit
   
 ''')
 
@@ -33,6 +33,11 @@ def showStatus():
   # print the player's current status
   print("---------------------------")
   print(f"You are in the {currentRoom}")
+  # print the room description, if given
+  if "description" in rooms[currentRoom]:
+    print(f"{rooms[currentRoom]['description']}")
+  # print your health score
+  print(f"Health : {health}")
   # print the current inventory
   print(f"Inventory : {str(inventory)}")
   # print the available directions
@@ -44,11 +49,17 @@ def showStatus():
   if "monster" in rooms[currentRoom]:
     print(f"There is a {rooms[currentRoom]['monster']} in the room!")
   if "poison" in rooms[currentRoom]:
-    print(f"There is some {rooms[currentRoom]['poison']} in the room!")
+    print(f"There is some poison {rooms[currentRoom]['poison']} in the room!")
   print("---------------------------")
 
-# An inventory, which is initially empty
+# Create inventory, which is initially empty
 inventory = []
+
+# Initial health points
+health = 3
+
+# start the player in the Hall
+currentRoom = 'Hall'
 
 '''
 A dictionary is used to link a room to other rooms and
@@ -68,7 +79,7 @@ rooms = {
                   'north' : 'Atrium',
                   'west' : 'Library'
               },
-              'item' : 'key'
+              'description' : 'The main downstairs hallway. \nYou see more rooms in every direction.'
             },
 
             'Kitchen' : {
@@ -76,26 +87,30 @@ rooms = {
                   'north' : 'Hall',
                   'east' : 'Pantry'
               },
-              'monster' : 'Zombie',
-              'item' : 'flower'
+              'monster' : 'Yellow Zombie',
+              'item' : 'flower',
+              'description' : 'A large, very clean kitchen. \nWhy is that flower here?'
             },
             
             'Dining Room' : {
               'directions' : {
                   'west' : 'Hall',
                   'south' : 'Pantry',
-                  'north' : 'Bedroom'
+                  'north' : 'Guest Bedroom'
               },
-              'item' : 'sword'
+              'item' : 'sword',
+              'description' : 'A grand dining room. There is a long, majestic \nmahagony table in the center of the room'
             },
             
             'Atrium' : {
               'directions' : {
                   'south' : 'Hall',
                   'west' : 'Parlor',
-                  'east' : 'Bedroom',
-                  'north' : 'Garden'
-              }
+                  'east' : 'Guest Bedroom',
+                  'north' : 'Garden',
+                  'up' : 'Upstairs Hall'
+              },
+              'description' : 'An atrium with a high, vaulted ceiling. \nThere are stairs leading up.'
             },
             
             'Library' : {
@@ -104,14 +119,16 @@ rooms = {
                   'south' : 'Study',
                   'north' : 'Parlor'
               },
-              'item' : 'potion'
+              'item' : 'potion',
+              'description' : 'An impressive collection of very old books.'
             },
             
             'Study' : {
               'directions' : {
                   'north' : 'Library'
               },
-              'poison' : 'hemlock'
+              'poison' : 'hemlock',
+              'description' : 'A quiet room with large, comfortable chairs.'
             },
             
             'Parlor' : {
@@ -119,7 +136,8 @@ rooms = {
                 'south' : 'Library',
                 'east' : 'Atrium'
               },
-              'monster' : 'Zombie'
+              'monster' : 'Red Zombie',
+              'description' : 'A nicely decorated room with a \nnumber of chairs arranged in a circle.'
             },
             
             'Pantry' : {
@@ -127,27 +145,69 @@ rooms = {
                 'west' : 'Kitchen',
                 'north' : 'Dining Room'
               },
-              'monster' : 'Zombie'
+              'monster' : 'Green Zombie',
+              'description' : 'Rows of shelves containing kitchen utensils \nand an ample supply of canned goods.'
             },
             
-            'Bedroom' : {
+            'Guest Bedroom' : {
               'directions' : {
                 'south' : 'Dining Room',
                 'west' : 'Atrium'
               },
-              'poison' : 'hemlock'
+              'poison' : 'hemlock',
+              'description' : 'A small, cozy bedroom with a window looking out on the Garden'
             },
             
             'Garden' : {
               'directions' : {
                 'south' : 'Atrium'
-              }   
+              },
+              'description' : 'A magnificent, sprawling garden with every \nimaginable type of flower, shrubbery and trees.'  
+            },
+
+            'Upstairs Hall' : {
+              'directions' : {
+                'north' : 'Master Bedroom',
+                'down' : 'Atrium'
+              },
+              'description' : 'A narrow upstairs hallway leading to the Master Bedroom. \nThere are stairs leading down.'
+            },
+
+            'Master Bedroom' : {
+              'directions' : {
+                'south' : 'Upstairs Hall',
+                'east' : 'Bathroom',
+                'west' : 'Office',
+                'north' : 'Sun Room'
+              },
+              'description' : 'A large, luxurious bedroom with a king sized bed and canopy, \nand bedside tables with lamps on both sides.'
+            },
+
+            'Office' : {
+              'directions' : {
+                'east' : 'Master Bedroom'
+              },
+              'item' : 'key',
+              'description' : 'A small room with only a desk, chair and lamp. \nThere is a telephone on the desk.'
+            },
+
+            'Bathroom' : {
+              'directions' : {
+                'west' : 'Master Bedroom'
+              },
+              'monster' : 'Purple Zombie',
+              'description' : 'A bright, clean room with white tiled floor and \nabundant towels neatly folded on a side table.'
+            },
+
+            'Sun Room' : {
+              'directions' : {
+                'south' : 'Master Bedroom'
+              },
+              'poison' : 'belladonna',
+              'description' : 'A beautiful view of the neighboring \nwoods can be see in all directions.'
             }
 
          }
-
-# start the player in the Hall
-currentRoom = 'Hall'
 
 showInstructions()
 
@@ -196,19 +256,31 @@ while True:
     if move[0] == 'exit':
       break
       
-    # Player loses game if they enter room with Zombie without a Sword
+    # Player loses health if they enter room with Zombie without a Sword
     if 'monster' in rooms[currentRoom] and 'Zombie' in rooms[currentRoom]['monster'] and 'sword' in inventory:
-      print('You have defended yourself from the Zombie attack! ... Continue On')
+      print('You have defended yourself from the Zombie attack! ... Fantastic!')
     elif 'monster' in rooms[currentRoom] and 'Zombie' in rooms[currentRoom]['monster']:
-      print('A Zombie has eaten your brainz. You need to defend yourself ... GAME OVER!!!')
-      break
+      # If monster is in room, subtract a health point
+      health -= 1
+      if health >= 1:
+        print("The Zombie took a bite out of you! You need to defend yourself with a sword!")
+      else:
+        # Game ends once health reaches zero
+        print('A Zombie has eaten your brainz ... GAME OVER!!!')
+        break
   
-    # Player loses game if they enter room with poison without a potion
-    if 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison'] and 'potion' in inventory:
-      print('The potion has protected you from the Poison! ... Continue On')
-    elif 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison']:
-      print('The Poison Hemlock has killed you. A potion will protect you ... GAME OVER!!!')
-      break
+    # Player loses health if they enter room with poison without a potion
+    if 'poison' in rooms[currentRoom] and 'potion' in inventory:
+      print('The potion has protected you from the Poison! ... Good Deal!')
+    elif 'poison' in rooms[currentRoom]:
+      # If poison is in room, subtract a health point
+      health -= 1
+      if health >= 1:
+        print("You are weakened by the Poison! A potion will protect you!")
+      else:
+        # Game ends once health reaches zero
+        print('The Poison has killed you ... GAME OVER!!!')
+        break
   
     # Player wins game if they get to the Garden with the key and magic potion
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
