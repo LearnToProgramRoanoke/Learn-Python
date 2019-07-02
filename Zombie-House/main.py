@@ -7,8 +7,6 @@ Integrated code from https://github.com/xAptive
 Converted code to use f-strings (available in Python 3.6 and newer)
 '''
 
-# NOTE: This code is in the 'working' branch
-
 def showInstructions():
   # print a main menu and the commands
   print('''
@@ -32,6 +30,9 @@ def showStatus():
   # print the player's current status
   print('---------------------------')
   print(f"You are in the {currentRoom}")
+  # print the room description, if given
+  if "description" in rooms[currentRoom]:
+    print(f"{rooms[currentRoom]['description']}")
   # print your health score
   print(f"Health : {health}")
   # print the current inventory
@@ -45,7 +46,7 @@ def showStatus():
   if "monster" in rooms[currentRoom]:
     print(f"There is a {rooms[currentRoom]['monster']} in the room!")
   if "poison" in rooms[currentRoom]:
-    print(f"There is some {rooms[currentRoom]['poison']} in the room!")
+    print(f"There is some poison {rooms[currentRoom]['poison']} in the room!")
   print("---------------------------")
 
 # Create inventory, which is initially empty
@@ -75,7 +76,7 @@ rooms = {
                   'north' : 'Atrium',
                   'west' : 'Library'
               },
-              'item' : 'key'
+              'description' : 'The main downstairs hallway. \nYou see more rooms in every direction.'
             },
 
             'Kitchen' : {
@@ -83,26 +84,30 @@ rooms = {
                   'north' : 'Hall',
                   'east' : 'Pantry'
               },
-              'monster' : 'Zombie',
-              'item' : 'flower'
+              'monster' : 'Yellow Zombie',
+              'item' : 'flower',
+              'description' : 'A large, very clean kitchen. \nWhy is that flower here?'
             },
             
             'Dining Room' : {
               'directions' : {
                   'west' : 'Hall',
                   'south' : 'Pantry',
-                  'north' : 'Bedroom'
+                  'north' : 'Guest Bedroom'
               },
-              'item' : 'sword'
+              'item' : 'sword',
+              'description' : 'A grand dining room. There is a long, majestic \nmahagony table in the center of the room'
             },
             
             'Atrium' : {
               'directions' : {
                   'south' : 'Hall',
                   'west' : 'Parlor',
-                  'east' : 'Bedroom',
-                  'north' : 'Garden'
-              }
+                  'east' : 'Guest Bedroom',
+                  'north' : 'Garden',
+                  'up' : 'Upstairs Hall'
+              },
+              'description' : 'An atrium with a high, vaulted ceiling. \nThere are stairs leading up.'
             },
             
             'Library' : {
@@ -111,14 +116,16 @@ rooms = {
                   'south' : 'Study',
                   'north' : 'Parlor'
               },
-              'item' : 'potion'
+              'item' : 'potion',
+              'description' : 'An impressive collection of very old books.'
             },
             
             'Study' : {
               'directions' : {
                   'north' : 'Library'
               },
-              'poison' : 'hemlock'
+              'poison' : 'hemlock',
+              'description' : 'A quiet room with large, comfortable chairs.'
             },
             
             'Parlor' : {
@@ -126,7 +133,8 @@ rooms = {
                 'south' : 'Library',
                 'east' : 'Atrium'
               },
-              'monster' : 'Zombie'
+              'monster' : 'Red Zombie',
+              'description' : 'A nicely decorated room with a \nnumber of chairs arranged in a circle.'
             },
             
             'Pantry' : {
@@ -134,21 +142,66 @@ rooms = {
                 'west' : 'Kitchen',
                 'north' : 'Dining Room'
               },
-              'monster' : 'Zombie'
+              'monster' : 'Green Zombie',
+              'description' : 'Rows of shelves containing kitchen utensils \nand an ample supply of canned goods.'
             },
             
-            'Bedroom' : {
+            'Guest Bedroom' : {
               'directions' : {
                 'south' : 'Dining Room',
                 'west' : 'Atrium'
               },
-              'poison' : 'hemlock'
+              'poison' : 'hemlock',
+              'description' : 'A small, cozy bedroom with a window looking out on the Garden'
             },
             
             'Garden' : {
               'directions' : {
                 'south' : 'Atrium'
-              }   
+              },
+              'description' : 'A magnificent, sprawling garden with every \nimaginable type of flower, shrubbery and trees.'  
+            },
+
+            'Upstairs Hall' : {
+              'directions' : {
+                'north' : 'Master Bedroom',
+                'down' : 'Atrium'
+              },
+              'description' : 'A narrow upstairs hallway leading to the Master Bedroom. \nThere are stairs leading down.'
+            },
+
+            'Master Bedroom' : {
+              'directions' : {
+                'south' : 'Upstairs Hall',
+                'east' : 'Bathroom',
+                'west' : 'Office',
+                'north' : 'Sun Room'
+              },
+              'description' : 'A large, luxurious bedroom with a king sized bed and canopy, \nand bedside tables with lamps on both sides.'
+            },
+
+            'Office' : {
+              'directions' : {
+                'east' : 'Master Bedroom'
+              },
+              'item' : 'key',
+              'description' : 'A small room with only a desk, chair and lamp. \nThere is a telephone on the desk.'
+            },
+
+            'Bathroom' : {
+              'directions' : {
+                'west' : 'Master Bedroom'
+              },
+              'monster' : 'Purple Zombie',
+              'description' : 'A bright, clean room with white tiled floor and \nabundant towels neatly folded on a side table.'
+            },
+
+            'Sun Room' : {
+              'directions' : {
+                'south' : 'Master Bedroom'
+              },
+              'poison' : 'belladonna',
+              'description' : 'A beautiful view of the neighboring \nwoods can be see in all directions.'
             }
 
          }
@@ -214,9 +267,9 @@ while True:
         break
   
     # Player loses health if they enter room with poison without a potion
-    if 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison'] and 'potion' in inventory:
+    if 'poison' in rooms[currentRoom] and 'potion' in inventory:
       print('The potion has protected you from the Poison! ... Good Deal!')
-    elif 'poison' in rooms[currentRoom] and 'hemlock' in rooms[currentRoom]['poison']:
+    elif 'poison' in rooms[currentRoom]:
       # If poison is in room, subtract a health point
       health -= 1
       if health >= 1:
