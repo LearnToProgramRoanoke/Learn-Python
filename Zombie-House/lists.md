@@ -11,9 +11,9 @@ Try this code in the Python REPL:
 
 ```python
 >>> x = ["one","two","three","four"]
->>> x(0)
+>>> x[0]
 >>> 'one'
->>> x(3)
+>>> x[3]
 >>> 'four'
 ```
 Lists are mutable, so you can add and remove items in a list with code. The game uses this for tracking the player's inventory. With the "get [item]" command, if the item is in the room, it is added to the inventory list.
