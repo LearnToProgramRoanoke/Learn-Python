@@ -17,7 +17,7 @@ This library contains classes that can be used to create objects in the game suc
   3. Character()
 
 * Constructors
-  1. __init__
+  1. \_\_init\_\_
   2. attributes
   3. instances
 
