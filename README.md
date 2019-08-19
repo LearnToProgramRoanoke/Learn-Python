@@ -6,7 +6,7 @@
 
 * [Using Adventurelib](./Using-Adventurelib/README.md) - Adapt a version of the text-based game using the Adventurelib library.
 
-* [OOP - Building Your Own Classes, Methods and Methods](./OOP/README.md) - A deeper dive into learning Object-Oriented Programming
+* [OOP - Building Your Own Classes, Constructors and Methods](./OOP/README.md) - A deeper dive into learning Object-Oriented Programming
 
 *Learn to Program, Roanoke is a Noke Codes community project.*
 
