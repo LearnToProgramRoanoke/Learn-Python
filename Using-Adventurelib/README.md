@@ -6,7 +6,7 @@ An adaptation of the Zombie-House game using the Adventurelib library.
 
 Full documentation of Adventurelib is [here](https://adventurelib.readthedocs.io/).
 
-This library contains classes that can be used to create objects in the game such as rooms and items to be placed into the player's inventory.
+This library contains classes that can be used to create objects in the game such as rooms and items to be placed into the player's inventory. Using the Adventurelib library is an introduction to Object-Oriented Programming (OOP) concepts.
 
 **New Concepts:**
 

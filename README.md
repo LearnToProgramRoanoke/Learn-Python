@@ -6,6 +6,8 @@
 
 * Using Adventurelib - An adaptation of the Zombie-House game using the Adventurelib library.
 
+* OOP - Building Your Own Classes and Methods
+
 *Learn to Program, Roanoke is a Noke Codes community project.*
 
 Prouly hosted on Github :octocat:
