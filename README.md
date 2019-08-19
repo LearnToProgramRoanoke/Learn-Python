@@ -10,4 +10,4 @@
 
 *Learn to Program, Roanoke is a Noke Codes community project.*
 
-Prouly hosted on Github :octocat:
+Proudly hosted on Github :octocat:
